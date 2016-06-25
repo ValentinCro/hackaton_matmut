@@ -11,7 +11,6 @@ class UsersController extends Controller
 {
     /**
      * @return array
-     * @View()
      */
     public function getUsersAction()
     {
@@ -25,7 +24,6 @@ class UsersController extends Controller
     /**
      * @param string $token
      * @return array
-     * @View()
      */
     public function getUserAction($token)
     {

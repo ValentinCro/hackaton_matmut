@@ -4,4 +4,4 @@ app:
 
 users:
     type:   rest
-    resource:   "@AppBundle/Controller/UsersController"
+    resource:   AppBundle\Controller\UsersController
