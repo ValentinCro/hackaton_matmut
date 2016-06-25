@@ -34,27 +34,50 @@
         };
     }]);
 
-    app.directive('trajetPage', ['$http',  function ($http) {
+    app.directive('trajetPage', ['$http', '$interval', function ($http) {
         return {
             restrict: "E",
             templateUrl: "views/trajet.html",
             controller: function($http) {
                 var trajet = this;
+                trajet.latitude = null;
+                trajet.longitude = null;
                 if ("geolocation" in navigator) {
                     /* geolocation is available */
-                    var watchID = navigator.geolocation.watchPosition(function(position) {
+                    trajet.started = false;
+
+                    trajet.geo_success = function (position) {
                         trajet.latitude = position.coords.latitude;
                         trajet.longitude = position.coords.longitude;
-                        console.log(trajet.latitude);
-                    });
+                        if (position.coords.speed === null) {
+                            trajet.speed = 0;
+                        } else {
+                            trajet.speed = position.coords.speed / 1000;
+                        }
+                    };
+
+                    trajet.geo_error = function() {
+                        console.log("Sorry, no position available.");
+                    };
+
+                    trajet.geo_options = {
+                        enableHighAccuracy: true,
+                        maximumAge        : 30000,
+                        timeout           : 1
+                    };
+
+                    navigator.geolocation.watchPosition(trajet.geo_success, trajet.geo_error, trajet.geo_options);
 
                     trajet.getCurrentLatitude = function() {
-                        return trajet.longitude;
+                        return trajet.latitude;
                     };
 
                     trajet.getCurrentLongitude = function() {
-                        return trajet.latitude;
+                        return trajet.longitude;
+                    };
 
+                    trajet.getSpeed = function() {
+                        return trajet.speed;
                     };
                 } else {
                     /* geolocation IS NOT available */
