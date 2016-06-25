@@ -1,1 +1,4 @@
 /front/.idea
+**/node_modules
+
+**/*.sass
