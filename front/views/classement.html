@@ -77,13 +77,13 @@
                 <th>Position</th>
                 <th>Score</th>
                 <th>Nom</th>
-                <th>Prénom</th>
             </thead>
             <tbody>
-                <td>1</td>
-                <td>2456</td>
-                <td>Jean Neige</td>
-                <td>1</td>
+                <tr ng-repeat="obj in classement.getData().users">
+                    <td>{{ obj.id }}</td>
+                    <td class="text-center">{{ obj.point_global }}</td>
+                    <td class="text-center">{{ obj.token }}</td>
+                </tr>
             </tbody>
         </table>
     </div>

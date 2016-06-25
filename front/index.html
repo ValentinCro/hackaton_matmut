@@ -33,17 +33,14 @@
                     <!-- Panel -->
                     <span class="accueil" ng-show="page.isSet(0)">
                         <!-- Info relatif au trajet (ma tendance etc) -->
-                        <div class="panel panel-left">
+                        <div class="panel panel-left clickable" ng-click="page.setPage(4)">
                             <div class="panel-heading">
                                 Mes Trajets
-                            </div>
-                            <div class="panel-body">
-                                <button class="btn btn-default" ng-click="page.setPage(1)">Démarrer mon trajet</button>
                             </div>
                         </div>
 
                         <!-- Aperçu des points actuels & tendance -->
-                        <div class="panel badge">
+                        <div class="panel badge clickable" ng-click="page.setPage(1)">
                             <span class="points">
                                 1321 pts
                             </span>
@@ -53,12 +50,9 @@
                         </div>
 
                         <!-- Ma position dans les divers classement -->
-                        <div class="panel panel-right">
+                        <div class="panel panel-right clickable" ng-click="page.setPage(2)">
                             <div class="panel-heading">
                                 Le classement
-                            </div>
-                            <div class="panel-body">
-                                <button class="btn btn-default" ng-click="page.setPage(2)">Voir Plus</button>
                             </div>
                         </div>
                     </span>
@@ -72,6 +66,9 @@
                     </span>
                     <span ng-show="page.isSet(3)">
                         <resume-trajet-page></resume-trajet-page>
+                    </span>
+                    <span ng-show="page.isSet(4)">
+                        <my-trajet-page></my-trajet-page>
                     </span>
                 </div>
             </div>

@@ -14,6 +14,33 @@
         };
     });
 
+    app.directive('myTrajetPage', ['$http', function($http) {
+        return {
+            restrict: "E",
+            templateUrl: "views/myTrajet.html",
+            controller: function($http) {
+                var myTrajetPage = this;
+                myTrajetPage.tab = [];
+                $http({
+                    method: 'GET',
+                    url: 'http://146.185.183.44/app.php/users/toto/trajets'
+                }).then(function successCallback(response) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+                    myTrajetPage.tab = response.data;
+                }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+
+                myTrajetPage.getData = function() {
+                    return myTrajetPage.tab;
+                };
+            },
+            controllerAs: "myTrajet"
+        };
+    }]);
+
     app.directive('resumeTrajetPage', ['$http', function($http) {
         return {
             restrict: "E",
@@ -34,6 +61,7 @@
             controller: function($http) {
                 var classementCtrl = this;
                 classementCtrl.tab = 0;
+                classementCtrl.data = [];
 
                 classementCtrl.isSet = function(checkTab) {
                     return classementCtrl.tab == checkTab;
@@ -41,6 +69,22 @@
 
                 classementCtrl.setTab = function(activeTab) {
                     classementCtrl.tab = activeTab;
+                };
+
+                $http({
+                    method: 'GET',
+                    url: 'http://146.185.183.44/app_dev.php/users'
+                }).then(function successCallback(response) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+                    classementCtrl.data = response.data;
+                }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+
+                classementCtrl.getData = function() {
+                    return classementCtrl.data;
                 };
             },
             controllerAs: "classement"
@@ -51,7 +95,7 @@
         return {
             restrict: "E",
             templateUrl: "views/trajet.html",
-            controller: function($http) {
+            controller: function() {
                 var trajet = this;
                 trajet.vitesseMax = 50;
                 trajet.tendance = 0;
@@ -64,27 +108,28 @@
                     trajet.started = false;
 
                     trajet.geo_success = function (position) {
+
+                        if (position.coords.speed === null) {
+                            trajet.speed = 0;
+                        } else {
+                            trajet.speed = position.coords.speed / 1000;
+                        }
                         if (trajet.started
                             && (trajet.latitude !== position.coords.latitude
-                            || trajet.longitude !== position.coords.longitude)) {
+                            || trajet.longitude !== position.coords.longitude) && trajet.speed !== 0) {
                             trajet.oldLatitude = trajet.latitude;
                             trajet.latitude = position.coords.latitude;
                             trajet.oldLongitude = trajet.longitude;
                             trajet.longitude = position.coords.longitude;
 
-                            if (position.coords.speed === null) {
-                                trajet.speed = 0;
-                                var dist = trajet.calculDistance(trajet.oldLatitude, trajet.latitude,
-                                trajet.oldLongitude, trajet.longitude);
-                                if (trajet.speed > trajet.vitesseMax) {
-                                    trajet.tendance -= 0.1;
-                                    trajet.badDriveKm += dist;
-                                } else {
-                                    trajet.tendance += 0.01;
-                                    trajet.goodDriveKm += dist;
-                                }
+                            var dist = trajet.calculDistance(trajet.oldLatitude, trajet.latitude,
+                            trajet.oldLongitude, trajet.longitude);
+                            if (trajet.speed > trajet.vitesseMax) {
+                                trajet.tendance -= 0.1;
+                                trajet.badDriveKm += dist;
                             } else {
-                                trajet.speed = position.coords.speed / 1000;
+                                trajet.tendance += 0.01;
+                                trajet.goodDriveKm += dist;
                             }
                         }
                     };
@@ -107,40 +152,32 @@
 
                     trajet.stop = function() {
                         trajet.started = false;
-                        var url = "http://146.185.183.44/app_dev.php/users/toto/trajets";
-                        $.ajax({
-                            type: 'POST',
-                            url: url,
-                            crossDomain: true,
-                            data: '{ "trajet" : {"km_good":20,"km_not_good":0}}',
-                            dataType: 'jsonp',
-                            success: function(responseData, textStatus, jqXHR) {
-                                var value = responseData.someKey;
-                            },
-                            error: function (responseData, textStatus, errorThrown) {
-                                console.log('POST failed.');
-                            }
-                        });
+                        $.post( "http://146.185.183.44/app.php/users/toto/trajets", {
+                            //trajet: "{\"km_good\":" + trajet.goodDriveKm +
+                            trajet: "{\"km_good\":300,\"km_not_good\":" + trajet.badDriveKm + "}" })
+                            .done(function( data ) {
+                                console.log( "Data Loaded: " + data );
+                            });
                         trajet.tendance = 0;
                         trajet.goodDriveKm = 0;
                         trajet.badDriveKm = 0;
-                    }
+                    };
 
                     trajet.isUp = function() {
                         return trajet.tendance > 0;
-                    }
+                    };
 
                     trajet.isDown = function() {
                         return trajet.tendance < 0;
-                    }
+                    };
 
                     trajet.getTendance = function() {
                         return trajet.tendance;
-                    }
+                    };
 
                     trajet.isNeutral = function() {
                         return trajet.tendance == 0;
-                    }
+                    };
 
                     trajet.getCurrentLatitude = function() {
                         return trajet.latitude;
@@ -154,14 +191,22 @@
                         return trajet.speed;
                     };
 
+                    trajet.deg2rad = function(deg) {
+                        return deg * (Math.PI/180)
+                    };
+
                     trajet.calculDistance = function(lat1, lat2, lon1, lon2){
-                        var delta1 = lat1.toRadians();
-                        var delta2 = lat2.toRadians();
-                        var lambda = (lon2-lon1).toRadians();
-                        var R = 6371e3; // gives d in metres
-                        var d = Math.acos( Math.sin(delta1)*Math.sin(delta2) + Math.cos(delta1)*Math.cos(delta2)
-                                * Math.cos(lambda) ) * R;
-                        return d / 1000;
+                        var R = 6371; // Radius of the earth in km
+                        var dLat = trajet.deg2rad(lat2-lat1);  // deg2rad below
+                        var dLon = trajet.deg2rad(lon2-lon1);
+                        var a =
+                                Math.sin(dLat/2) * Math.sin(dLat/2) +
+                                Math.cos(trajet.deg2rad(lat1)) * Math.cos(trajet.deg2rad(lat2)) *
+                                Math.sin(dLon/2) * Math.sin(dLon/2)
+                            ;
+                        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                        var d = R * c; // Distance in km
+                        return d;
                     };
                 } else {
                     /* geolocation IS NOT available */

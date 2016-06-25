@@ -1,0 +1,16 @@
+<div class="row" ng-show="classement.isSet(0)">
+    <div class="col-lg-12 col-md-12">
+        <table class="table">
+            <thead>
+                <th class="text-center">Bon point</th>
+                <th class="text-center">Mauvais Point</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="obj in myTrajet.getData().trajets">
+                <td class="text-center">{{ obj.km_good }}</td>
+                <td class="text-center">{{ obj.km_not_good }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
