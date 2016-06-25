@@ -9,25 +9,26 @@
     </head>
     <body ng-app="matmutDrive">
         <span ng-controller="pageController as page">
-            {{ page.isSet(0) }}
             <span ng-show="page.isSet(0)">
                 <!-- Info relatif au trajet (ma tendance etc) -->
                 <div>
 
-                    <button ng-click="page.setPage(1)">Démarrer mon trajet</button>
+                    <button class="btn btn-default" ng-click="page.setPage(1)">Démarrer mon trajet</button>
                 </div>
 
                     <!-- Info liés au classement -->
                 <div>
                     <!-- Ma position dans les divers classement -->
-                    <button ng-click="page.setPage(2)">Voir Plus</button>
+                    <button class="btn btn-default" ng-click="page.setPage(2)">Voir Plus</button>
                 </div>
             </span>
             <span ng-show="page.isSet(1)">
                 <classement-page></classement-page>
+                <button class="btn btn-default" ng-click="page.setPage(0)">Retour accueil</button>
             </span>
             <span ng-show="page.isSet(2)">
                 <trajet-page></trajet-page>
+                <button class="btn btn-default" ng-click="page.setPage(0)">Retour accueil</button>
             </span>
         </span>
     </body>
