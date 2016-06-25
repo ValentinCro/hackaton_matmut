@@ -11,6 +11,10 @@ class UsersController extends Controller
 {
     /**
      * @return array
+<<<<<<< HEAD
+=======
+     *
+>>>>>>> 6a728334c639c0075374ca10c5300fee18c16eca
      */
     public function getUsersAction()
     {
@@ -19,11 +23,16 @@ class UsersController extends Controller
         $users = $em->getRepository('AppBundle:User')->findAll();
 
         return array('users' => $users);
+//        return new Response("ta mère");
     }
 
     /**
      * @param string $token
      * @return array
+<<<<<<< HEAD
+=======
+     *
+>>>>>>> 6a728334c639c0075374ca10c5300fee18c16eca
      */
     public function getUserAction($token)
     {

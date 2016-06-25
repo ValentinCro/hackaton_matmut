@@ -69,7 +69,13 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+<<<<<<< HEAD
 # FOSRestBundle
+=======
+sensio_framework_extra:
+    view:   { annotations: true }
+    router: { annotations: true }
+>>>>>>> 6a728334c639c0075374ca10c5300fee18c16eca
 
 fos_rest:
     param_fetcher_listener: true
@@ -87,4 +93,8 @@ fos_rest:
         failed_validation: HTTP_BAD_REQUEST
         default_engine: twig
     routing_loader:
+<<<<<<< HEAD
         default_format: json
+=======
+        default_format: json
+>>>>>>> 6a728334c639c0075374ca10c5300fee18c16eca
