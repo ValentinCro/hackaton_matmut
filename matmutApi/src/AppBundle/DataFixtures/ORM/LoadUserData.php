@@ -17,13 +17,11 @@ class LoadUserData implements FixtureInterface
     {
         $toto = new User();
         $toto->setToken('toto');
-        $toto->setTendance('toto');
-        $toto->setEmail('toto@toto.org');
+        $toto->setPointGlobal(0);
 
         $titi  = new User();
-        $titi->setUsername('titi');
-        $titi->setPassword('titi');
-        $titi->setEmail('titi@titi.org');
+        $titi->setToken('titi');
+        $titi->setPointGlobal(0);
 
         $manager->persist($toto);
         $manager->persist($titi);

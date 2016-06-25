@@ -3,12 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @UniqueEntity(fields="token", message="Token is already in use")
  */
 class User
 {
@@ -24,20 +26,14 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="token", type="text")
+     * @ORM\Column(name="token", type="text", length=255)
      */
     private $token;
 
     /**
-     * @var string
+     * @var int
      *
-     */
-    private $pointMonth;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="point_global", type="string", length=255)
+     * @ORM\Column(name="point_global", type="integer")
      */
     private $pointGlobal;
 
@@ -77,33 +73,9 @@ class User
     }
 
     /**
-     * Set pointMonth
+     * Set pointGlobals
      *
-     * @param string $pointMonth
-     *
-     * @return User
-     */
-    public function setPointMonth($pointMonth)
-    {
-        $this->pointMonth = $pointMonth;
-
-        return $this;
-    }
-
-    /**
-     * Get pointMonth
-     *
-     * @return string
-     */
-    public function getPointMonth()
-    {
-        return $this->pointMonth;
-    }
-
-    /**
-     * Set pointGlobal
-     *
-     * @param string $pointGlobal
+     * @param int $pointGlobal
      *
      * @return User
      */
@@ -117,7 +89,7 @@ class User
     /**
      * Get pointGlobal
      *
-     * @return string
+     * @return int
      */
     public function getPointGlobal()
     {
