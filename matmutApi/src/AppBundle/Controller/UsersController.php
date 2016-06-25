@@ -23,9 +23,9 @@ class UsersController extends Controller
 
         $users = $em->getRepository('AppBundle:User')->findBy(
             array(),
-            array("pointGlobal" => "ASC")
+            array("pointGlobal" => "DESC")
         );
-        foreach($users as $user) {
+        /*foreach($users as $user) {
             $trajets = $em->getRepository('AppBundle:Trajet')->findBy(
                 array('user' => $user)
             );
@@ -33,9 +33,9 @@ class UsersController extends Controller
                 array('user' => $user)
             );
             $result[$user->getId()] = array($user, array('points' => $points), array('trajets' => $trajets));
-        }
+        }*/
 
-        return array('users' => $result);
+        return array('users' => $users);
     }
 
     /**
