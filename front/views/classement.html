@@ -11,52 +11,51 @@
         </li>
     </ul>
 </div>
-    <!-- Mes amis -->
-    <div class="row" ng-show="classement.isSet(0)">
-        <div class="col-lg-12 col-md-12">
-            <table class="table">
-                <thead>
-                    <th>Position</th>
-                    <th>Nombre de Point</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Récompense</th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>2456</td>
-                        <td>Jean Neige</td>
-                        <td>1</td>
-                        <td><i class="fa fa-thumbs-up green" aria-hidden="true"></i></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>2456</td>
-                        <td>Jean Neige</td>
-                        <td>1</td>
-                        <td><i class="fa fa-thumbs-up green" aria-hidden="true"></i></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>-100</td>
-                        <td>Jean Neige</td>
-                        <td>1</td>
-                        <td><i class="fa fa-thumbs-down red" aria-hidden="true"></i></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+<!-- Mes amis -->
+<div class="row" ng-show="classement.isSet(0)">
+    <div class="col-lg-12 col-md-12">
+        <table class="table">
+            <thead>
+                <th>Position</th>
+                <th>Score</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Récompense</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>2456</td>
+                    <td>Jean Neige</td>
+                    <td>1</td>
+                    <td><i class="fa fa-thumbs-up text-green" aria-hidden="true"></i></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2456</td>
+                    <td>Jean Neige</td>
+                    <td>1</td>
+                    <td><i class="fa fa-thumbs-up text-green" aria-hidden="true"></i></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>-100</td>
+                    <td>Jean Neige</td>
+                    <td>1</td>
+                    <td><i class="fa fa-thumbs-down text-red" aria-hidden="true"></i></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
 <!-- Ma Ville -->
-<span ng-show="classement.isSet(1)">
+<div class="row" ng-show="classement.isSet(1)">
     <div class="col-lg-12 col-md-12">
         <table class="table">
             <thead>
                 <th>Position</th>
-                <th>Nombre de Point</th>
+                <th>Score</th>
                 <th>Nom</th>
                 <th>Prénom</th>
             </thead>
@@ -68,15 +67,15 @@
             </tbody>
         </table>
     </div>
-</span>
+</div>
 
 <!-- Classement Global -->
-<span ng-show="classement.isSet(2)">
+<div class="row" ng-show="classement.isSet(2)">
     <div class="col-lg-12 col-md-12">
         <table class="table">
             <thead>
                 <th>Position</th>
-                <th>Nombre de Point</th>
+                <th>Score</th>
                 <th>Nom</th>
                 <th>Prénom</th>
             </thead>
@@ -88,4 +87,4 @@
             </tbody>
         </table>
     </div>
-</span>
+</div>
