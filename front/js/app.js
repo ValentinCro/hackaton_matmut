@@ -53,6 +53,8 @@
             templateUrl: "views/trajet.html",
             controller: function($http) {
                 var trajet = this;
+                trajet.vitesseMax = 50;
+                trajet.tendance = 0;
                 trajet.latitude = null;
                 trajet.longitude = null;
                 if ("geolocation" in navigator) {
@@ -64,6 +66,9 @@
                         trajet.longitude = position.coords.longitude;
                         if (position.coords.speed === null) {
                             trajet.speed = 0;
+                            if (trajet.speed > trajet.vitesseMax) {
+                                trajet.tendance += 0.1;
+                            }
                         } else {
                             trajet.speed = position.coords.speed / 1000;
                         }
