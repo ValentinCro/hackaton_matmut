@@ -1,3 +1,28 @@
 <div class="row">
-    <p>{{ trajet.getSpeed() }} km/h</p>
+    <!-- Info relatif au trajet (ma tendance etc) -->
+    <div class="panel panel-left">
+        <div class="panel-heading">
+            Mes Trajets
+        </div>
+        <div class="panel-body">
+            <button class="btn btn-default" ng-click="page.setPage(1)">Démarrer mon trajet</button>
+        </div>
+    </div>
+
+    <div class="panel badge">
+        <span class="points">
+            {{ trajet.getSpeed() }}<small>km/h</small><br>
+        </span>
+    </div>
+
+    <!-- Ma position dans les divers classement -->
+    <div class="panel panel-right">
+        <div class="panel-heading">
+            Le classement
+        </div>
+        <div class="panel-body">
+            <button class="btn btn-default" ng-click="page.setPage(2)">Voir Plus</button>
+        </div>
+    </div>
+
 </div>
