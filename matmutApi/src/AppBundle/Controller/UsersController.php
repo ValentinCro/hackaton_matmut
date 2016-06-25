@@ -105,6 +105,22 @@ class UsersController extends Controller
         return array('points' => $points);
     }
 
+    public function postUserAction(Request $request)
+    {
+        $user = json_decode($request->get("user"), true);
+
+        $em = $this->getDoctrine()->getManager();
+
+        $userEntity = new User();
+        $userEntity->setToken($user["token"]);
+        $userEntity->setPointGlobal(0);
+
+        $em->persist($userEntity);
+        $em->flush();
+
+        return $userEntity;
+    }
+
 
     public function postUsersTrajetsAction(Request $request, $token)
     {
