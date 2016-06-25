@@ -17,10 +17,20 @@ class UsersController extends Controller
     public function getUsersAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $result[] = null;
 
         $users = $em->getRepository('AppBundle:User')->findAll();
+        foreach($users as $user) {
+            $trajets = $em->getRepository('AppBundle:Trajet')->findBy(
+                array('user' => $user)
+            );
+            $points = $em->getRepository('AppBundle:Point')->findBy(
+                array('user' => $user)
+            );
+            $result[$user->getId()] = array($user, array('points' => $points), array('trajets' => $trajets));
+        }
 
-        return array('users' => $users);
+        return array('users' => $result);
     }
 
     /**
@@ -32,10 +42,21 @@ class UsersController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $users = $em->getRepository('AppBundle:User')->findBy(
+        $result[] = null;
+
+        $user= $em->getRepository('AppBundle:User')->findOneBy(
             array('token' => $token)
         );
 
-        return array('user' => $users);
+        $trajets = $em->getRepository('AppBundle:Trajet')->findBy(
+            array('user' => $user)
+        );
+        $points = $em->getRepository('AppBundle:Point')->findBy(
+            array('user' => $user)
+        );
+
+        $result = array($user, array('points' => $points), array('trajets' => $trajets));
+
+        return $result;
     }
 }
