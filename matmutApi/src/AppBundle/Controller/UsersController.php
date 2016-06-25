@@ -105,6 +105,19 @@ class UsersController extends Controller
         return array('points' => $points);
     }
 
+    /**
+     * @return array
+     * @View()
+     */
+    public function getAdviceAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $advices= $em->getRepository('AppBundle:Advice')->findAll();
+
+        return array('advices' => $advices);
+    }
+
     public function postUserAction(Request $request)
     {
         $user = json_decode($request->get("user"), true);
