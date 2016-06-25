@@ -8,28 +8,38 @@
         <link rel="stylesheet" type="text/css" href="css/app.css">
     </head>
     <body ng-app="matmutDrive">
-        <span ng-controller="pageController as page">
-            <span ng-show="page.isSet(0)">
-                <!-- Info relatif au trajet (ma tendance etc) -->
-                <div>
+        <div class="container" ng-controller="pageController as page">
+            <div class="row">
+                <span ng-show="page.isSet(0)">
+                    <!-- Info relatif au trajet (ma tendance etc) -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Mes Trajets
+                        </div>
+                        <div class="panel-body">
+                            <button class="btn btn-default" ng-click="page.setPage(1)">Démarrer mon trajet</button>
+                        </div>
+                    </div>
 
-                    <button class="btn btn-default" ng-click="page.setPage(1)">Démarrer mon trajet</button>
-                </div>
-
-                    <!-- Info liés au classement -->
-                <div>
                     <!-- Ma position dans les divers classement -->
-                    <button class="btn btn-default" ng-click="page.setPage(2)">Voir Plus</button>
-                </div>
-            </span>
-            <span ng-show="page.isSet(1)">
-                <classement-page></classement-page>
-                <button class="btn btn-default" ng-click="page.setPage(0)">Retour accueil</button>
-            </span>
-            <span ng-show="page.isSet(2)">
-                <trajet-page></trajet-page>
-                <button class="btn btn-default" ng-click="page.setPage(0)">Retour accueil</button>
-            </span>
-        </span>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Le classement
+                        </div>
+                        <div class="panel-body">
+                            <button class="btn btn-default" ng-click="page.setPage(2)">Voir Plus</button>
+                        </div>
+                    </div>
+                </span>
+                <span ng-show="page.isSet(1)">
+                    <trajet-page></trajet-page>
+                    <button class="btn btn-default" ng-click="page.setPage(0)">Retour accueil</button>
+                </span>
+                <span ng-show="page.isSet(2)">
+                    <classement-page></classement-page>
+                    <button class="btn btn-default" ng-click="page.setPage(0)">Retour accueil</button>
+                </span>
+            </div>
+        </div>
     </body>
 </html>

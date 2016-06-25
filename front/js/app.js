@@ -19,22 +19,16 @@
             restrict: "E",
             templateUrl: "views/classement.html",
             controller: function($http) {
-                /*
-                var freeChampCtrl = this;
-                freeChampCtrl.freeChamps = [];
-                freeChampCtrl.freeChampsInfo = [];
-                $http.get('src/Routes/getFreeChamps.php').success(function(data) {
-                    freeChampCtrl.freeChamps = data;
-                    freeChampCtrl.tab = freeChampCtrl.freeChamps[0].id;
-                });
+                var classmentCtrl = this;
+                classmentCtrl.tab = 0;
 
-                freeChampCtrl.isSet = function(checkTab) {
-                    return freeChampCtrl.tab == checkTab;
+                classmentCtrl.isSet = function(checkTab) {
+                    return classmentCtrl.tab == checkTab;
                 };
 
-                freeChampCtrl.setTab = function(activeTab) {
-                    freeChampCtrl.tab = activeTab;
-                };*/
+                classmentCtrl.setTab = function(activeTab) {
+                    classmentCtrl.tab = activeTab;
+                };
             },
             controllerAs: "classement"
         };
