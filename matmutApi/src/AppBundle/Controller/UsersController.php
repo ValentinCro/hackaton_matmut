@@ -65,6 +65,47 @@ class UsersController extends Controller
         return $result;
     }
 
+    /**
+     * @param string $token
+     * @return array
+     * @View()
+     */
+    public function getUserTrajetsAction($token)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $user= $em->getRepository('AppBundle:User')->findOneBy(
+            array('token' => $token)
+        );
+
+        $trajets = $em->getRepository('AppBundle:Trajet')->findBy(
+            array('user' => $user)
+        );
+
+        return array('trajets' => $trajets);
+    }
+
+    /**
+     * @param string $token
+     * @return array
+     * @View()
+     */
+    public function getUserPointsAction($token)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $user= $em->getRepository('AppBundle:User')->findOneBy(
+            array('token' => $token)
+        );
+
+        $points = $em->getRepository('AppBundle:Point')->findBy(
+            array('user' => $user)
+        );
+
+        return array('points' => $points);
+    }
+
+
     public function postUsersTrajetsAction(Request $request, $token)
     {
         $trajet = json_decode($request->get("trajet"), true);
