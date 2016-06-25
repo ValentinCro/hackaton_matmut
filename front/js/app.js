@@ -19,15 +19,15 @@
             restrict: "E",
             templateUrl: "views/classement.html",
             controller: function($http) {
-                var classmentCtrl = this;
-                classmentCtrl.tab = 0;
+                var classementCtrl = this;
+                classementCtrl.tab = 0;
 
-                classmentCtrl.isSet = function(checkTab) {
-                    return classmentCtrl.tab == checkTab;
+                classementCtrl.isSet = function(checkTab) {
+                    return classementCtrl.tab == checkTab;
                 };
 
-                classmentCtrl.setTab = function(activeTab) {
-                    classmentCtrl.tab = activeTab;
+                classementCtrl.setTab = function(activeTab) {
+                    classementCtrl.tab = activeTab;
                 };
             },
             controllerAs: "classement"
@@ -39,6 +39,26 @@
             restrict: "E",
             templateUrl: "views/trajet.html",
             controller: function($http) {
+                var trajet = this;
+                if ("geolocation" in navigator) {
+                    /* geolocation is available */
+                    var watchID = navigator.geolocation.watchPosition(function(position) {
+                        trajet.latitude = position.coords.latitude;
+                        trajet.longitude = position.coords.longitude;
+                        console.log(trajet.latitude);
+                    });
+
+                    trajet.getCurrentLatitude = function() {
+                        return trajet.longitude;
+                    };
+
+                    trajet.getCurrentLongitude = function() {
+                        return trajet.latitude;
+
+                    };
+                } else {
+                    /* geolocation IS NOT available */
+                }
             },
             controllerAs: "trajet"
         };
