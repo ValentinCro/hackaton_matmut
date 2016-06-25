@@ -9,12 +9,15 @@
         </div>
     </div>
 
-    <div class="panel badge red">
+    <div class="panel badge" ng-class="green : trajet.isUp(), blue : trajet.isUp(), red : trajet.isDown()">
         <span class="points">
             {{ trajet.getSpeed() }}km/h
         </span>
         <span class="tendance">
-            <i class="glyphicon glyphicon-arrow-right"></i>+2
+            <i ng-show="trajet.isUp()" class="glyphicon glyphicon-arrow-right up"></i>
+            <i ng-show="trajet.isDown()" class="glyphicon glyphicon-arrow-right down"></i>
+            <i ng-show="trajet.isNeutral()" class="glyphicon glyphicon-arrow-right"></i>
+            { trajet.tendance }
         </span>
     </div>
 
