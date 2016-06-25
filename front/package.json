@@ -10,10 +10,9 @@
   "license": "ISC",
   "devDependencies": {
     "bootstrap-sass": "^3.3.6",
+    "cssnano": "^3.7.1",
     "gulp": "^3.9.1",
     "gulp-postcss": "^6.1.1",
-    "gulp-sass": "^2.3.2",
-    "nano": "^6.2.0",
-    "node-sass": "^3.8.0"
+    "gulp-sass": "^2.3.2"
   }
 }
