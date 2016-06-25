@@ -20,6 +20,7 @@ class Trajet
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    private $truc;
 
     /**
      * @var string
