@@ -1,13 +1,13 @@
 <div class="row">
     <ul class="nav nav-tabs">
         <li role="presentation" ng-class="{active: classement.isSet(0)}">
-            <a href="#">Mes amis</a>
+            <a ng-click="classement.setTab(0)" href="#">Mes amis</a>
         </li>
         <li role="presentation" ng-class="{active: classement.isSet(1)}">
-            <a href="#">Ma ville</a>
+            <a ng-click="classement.setTab(1)" href="#">Ma ville</a>
         </li>
         <li role="presentation" ng-class="{active: classement.isSet(2)}">
-            <a href="#">Classement Global</a>
+            <a ng-click="classement.setTab(2)" href="#">Classement Global</a>
         </li>
     </ul>
 </div>
