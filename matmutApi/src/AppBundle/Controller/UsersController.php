@@ -6,15 +6,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\User\User;
+use FOS\RestBundle\Controller\Annotations\View;
 
 class UsersController extends Controller
 {
     /**
      * @return array
-<<<<<<< HEAD
-=======
-     *
->>>>>>> 6a728334c639c0075374ca10c5300fee18c16eca
+     * @View()
      */
     public function getUsersAction()
     {
@@ -23,23 +21,19 @@ class UsersController extends Controller
         $users = $em->getRepository('AppBundle:User')->findAll();
 
         return array('users' => $users);
-//        return new Response("ta mère");
     }
 
     /**
      * @param string $token
      * @return array
-<<<<<<< HEAD
-=======
-     *
->>>>>>> 6a728334c639c0075374ca10c5300fee18c16eca
+     * @View()
      */
     public function getUserAction($token)
     {
         $em = $this->getDoctrine()->getManager();
 
         $users = $em->getRepository('AppBundle:User')->findBy(
-            array('token'=>$token)
+            array('token' => $token)
         );
 
         return array('user' => $users);

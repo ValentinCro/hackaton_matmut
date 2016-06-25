@@ -1,0 +1,9 @@
+AppBundle\Entity\User:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        token:
+            expose: true
+        pointGlobal:
+            expose: true
