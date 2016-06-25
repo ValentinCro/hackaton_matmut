@@ -5,7 +5,7 @@
             Mes Trajets
         </div>
         <div class="panel-body">
-            <button class="btn btn-default" ng-click="page.setPage(1)">Démarrer mon trajet</button>
+
         </div>
     </div>
 
@@ -13,14 +13,14 @@
         <span class="points">
             {{ trajet.getSpeed() }}km/h
         </span>
+        <span class="tendance">
+            <i class="glyphicon glyphicon-arrow-right"></i>+2
+        </span>
     </div>
 
     <!-- Ma position dans les divers classement -->
-    <div class="panel panel-right">
-        <div class="panel-heading">
-            Le classement
-        </div>
-        <div class="panel-body" ng-click="page.setPage(2)">
-            J'ai terminé mon trajet
+    <div class="panel panel-right" ng-click="page.setPage(3)">
+        <div class="panel-body">
+            Terminer mon trajet
         </div>
     </div>

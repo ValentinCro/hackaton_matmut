@@ -14,6 +14,19 @@
         };
     });
 
+    app.directive('resumeTrajetPage', ['$http', function($http) {
+        return {
+            restrict: "E",
+            templateUrl: "views/resumeTrajet.html",
+            controller: function($http) {
+                var classementCtrl = this;
+                classementCtrl.tab = 0;
+
+            },
+            controllerAs: "resume"
+        };
+    }]);
+
     app.directive('classementPage', ['$http', function($http) {
         return {
             restrict: "E",
