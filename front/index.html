@@ -5,8 +5,29 @@
         <title>Matmut Drive</title>
         <script src="js/angular.min.js"></script>
         <script src="js/app.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/app.css">
     </head>
     <body ng-app="matmutDrive">
-        
+        <span ng-controller="pageController">
+            <span ng-show="isSet(0)">
+                <!-- Info relatif au trajet (ma tendance etc) -->
+                <div>
+
+                    <button ng-click="setPage(1)">Démarrer mon trajet</button>
+                </div>
+
+                    <!-- Info liés au classement -->
+                <div>
+                    <!-- Ma position dans les divers classement -->
+                    <button ng-click="setPage(2)">Voir Plus</button>
+                </div>
+            </span>
+            <span ng-show="isSet(1)">
+                <classement-page></classement-page>
+            </span>
+            <span ng-show="isSet(2)">
+
+            </span>
+        </span>
     </body>
 </html>
