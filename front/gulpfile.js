@@ -1,5 +1,5 @@
 const gulp    = require('gulp');
-const cssnano    = require('cssnano');
+const cssnano = require('cssnano');
 const postcss = require('gulp-postcss');
 const sass    = require('gulp-sass');
 

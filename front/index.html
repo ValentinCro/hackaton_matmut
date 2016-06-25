@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
     <head>
         <meta charset="UTF-8"/>
         <title>Matmut Drive</title>
@@ -7,9 +9,13 @@
         <script src="js/app.js"></script>
         <link rel="stylesheet" type="text/css" href="css/app.css">
     </head>
+
+
     <body ng-app="matmutDrive">
+
+
         <span ng-controller="pageController as page">
-            <nav class="navbar navbar-default">
+            <nav class="navbar navbar-default header">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
@@ -17,8 +23,12 @@
                     </div>
                 </div><!-- /.container-fluid -->
             </nav>
+
+            
             <div class="container">
                 <div class="row">
+
+                    <!-- Panel -->
                     <span ng-show="page.isSet(0)">
                         <!-- Info relatif au trajet (ma tendance etc) -->
                         <div class="panel panel-default">
@@ -28,6 +38,16 @@
                             <div class="panel-body">
                                 <button class="btn btn-default" ng-click="page.setPage(1)">Démarrer mon trajet</button>
                             </div>
+                        </div>
+                        
+                        <!-- Aperçu des points actuels & tendance -->
+                        <div class="badge">
+                            <span class="points">
+                                21<small>pts</small>
+                            </span>
+                            <span class="tendance">
+                                <i class="fa fa-long-arrow-right"></i>+2
+                            </span>
                         </div>
 
                         <!-- Ma position dans les divers classement -->
@@ -40,6 +60,8 @@
                             </div>
                         </div>
                     </span>
+
+                    <!-- Pages à appeller -->
                     <span ng-show="page.isSet(1)">
                         <trajet-page></trajet-page>
                         <button class="btn btn-default" ng-click="page.setPage(0)">Retour accueil</button>
