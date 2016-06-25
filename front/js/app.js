@@ -76,7 +76,7 @@
                     trajet.geo_options = {
                         enableHighAccuracy: true,
                         maximumAge        : 30000,
-                        timeout           : 1
+                        timeout           : 30
                     };
 
                     navigator.geolocation.watchPosition(trajet.geo_success, trajet.geo_error, trajet.geo_options);
