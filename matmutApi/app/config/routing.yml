@@ -1,7 +1,8 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+    prefix: /
 
 users:
     type:   rest
-    resource:   "@AppBundle/Controller/UsersController"
+    resource:   AppBundle\Controller\UsersController

@@ -11,7 +11,7 @@ class UsersController extends Controller
 {
     /**
      * @return array
-     * @View()
+     *
      */
     public function getUsersAction()
     {
@@ -20,12 +20,13 @@ class UsersController extends Controller
         $users = $em->getRepository('AppBundle:User')->findAll();
 
         return array('users' => $users);
+//        return new Response("ta mère");
     }
 
     /**
      * @param string $token
      * @return array
-     * @View()
+     *
      */
     public function getUserAction($token)
     {
