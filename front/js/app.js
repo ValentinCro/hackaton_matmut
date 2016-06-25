@@ -56,7 +56,7 @@
                 trajet.vitesseMax = 50;
                 trajet.tendance = 0;
                 trajet.goodDriveKm = 0;
-                trajet.bagDriveKm = 0;
+                trajet.badDriveKm = 0;
                 trajet.latitude = null;
                 trajet.longitude = null;
                 if ("geolocation" in navigator) {
@@ -64,8 +64,9 @@
                     trajet.started = false;
 
                     trajet.geo_success = function (position) {
-                        if (trajet.latitude !== position.coords.latitude
-                            || trajet.longitude !== position.coords.longitude) {
+                        if (trajet.started
+                            && (trajet.latitude !== position.coords.latitude
+                            || trajet.longitude !== position.coords.longitude)) {
                             trajet.oldLatitude = trajet.latitude;
                             trajet.latitude = position.coords.latitude;
                             trajet.oldLongitude = trajet.longitude;
@@ -77,7 +78,7 @@
                                 trajet.oldLongitude, trajet.longitude);
                                 if (trajet.speed > trajet.vitesseMax) {
                                     trajet.tendance -= 0.1;
-                                    trajet.bagDriveKm += dist;
+                                    trajet.badDriveKm += dist;
                                 } else {
                                     trajet.tendance += 0.01;
                                     trajet.goodDriveKm += dist;
@@ -100,6 +101,31 @@
 
                     navigator.geolocation.watchPosition(trajet.geo_success, trajet.geo_error, trajet.geo_options);
 
+                    trajet.start = function() {
+                        trajet.started = true;
+                    };
+
+                    trajet.stop = function() {
+                        trajet.started = false;
+                        var url = "http://146.185.183.44/app_dev.php/users/toto/trajets";
+                        $.ajax({
+                            type: 'POST',
+                            url: url,
+                            crossDomain: true,
+                            data: '{ "trajet" : {"km_good":20,"km_not_good":0}}',
+                            dataType: 'jsonp',
+                            success: function(responseData, textStatus, jqXHR) {
+                                var value = responseData.someKey;
+                            },
+                            error: function (responseData, textStatus, errorThrown) {
+                                console.log('POST failed.');
+                            }
+                        });
+                        trajet.tendance = 0;
+                        trajet.goodDriveKm = 0;
+                        trajet.badDriveKm = 0;
+                    }
+
                     trajet.isUp = function() {
                         return trajet.tendance > 0;
                     }
@@ -113,7 +139,7 @@
                     }
 
                     trajet.isNeutral = function() {
-                        return trajet.tendance === 0;
+                        return trajet.tendance == 0;
                     }
 
                     trajet.getCurrentLatitude = function() {

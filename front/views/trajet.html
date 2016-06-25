@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <div class="panel badge" ng-class="green : trajet.isUp(), blue : trajet.isUp(), red : trajet.isDown()">
+    <div class="panel badge" ng-class="{green : trajet.isUp(), blue : trajet.isNeutral(), red : trajet.isDown()}">
         <span class="points">
             {{ trajet.getSpeed() }}km/h
         </span>
@@ -22,7 +22,7 @@
     </div>
 
     <!-- Ma position dans les divers classement -->
-    <div class="panel panel-right clickable" ng-click="page.setPage(3)">
+    <div class="panel panel-right clickable" ng-click="trajet.stop(); page.setPage(3)">
         <div class="panel-body">
             Terminer mon trajet
         </div>
