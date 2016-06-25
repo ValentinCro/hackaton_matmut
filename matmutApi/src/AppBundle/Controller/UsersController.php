@@ -23,16 +23,16 @@ class UsersController extends Controller
     }
 
     /**
-     * @param integer $userId
+     * @param string $token
      * @return array
      * @View()
      */
-    public function getUserAction($userId)
+    public function getUserAction($token)
     {
         $em = $this->getDoctrine()->getManager();
 
         $users = $em->getRepository('AppBundle:User')->findBy(
-            array('id'=>$userId)
+            array('token'=>$token)
         );
 
         return array('user' => $users);
