@@ -108,6 +108,10 @@
                         return trajet.tendance < 0;
                     }
 
+                    trajet.getTendance = function() {
+                        return trajet.tendance;
+                    }
+
                     trajet.isNeutral = function() {
                         return trajet.tendance === 0;
                     }

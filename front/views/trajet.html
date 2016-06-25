@@ -17,7 +17,7 @@
             <i ng-show="trajet.isUp()" class="glyphicon glyphicon-arrow-right up"></i>
             <i ng-show="trajet.isDown()" class="glyphicon glyphicon-arrow-right down"></i>
             <i ng-show="trajet.isNeutral()" class="glyphicon glyphicon-arrow-right"></i>
-            { trajet.tendance }
+            {{ trajet.getTendance() }}
         </span>
     </div>
 
