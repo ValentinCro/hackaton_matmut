@@ -22,13 +22,20 @@
 .down
   transform: rotate(45deg) !important
 
+.clickable-points
+  cursor: pointer
+  transition: all 0.2s ease-in
+  background-color: #2ecc71
+  &:hover 
+    background-color: #27ae60
+
 .clickable
   cursor: pointer
   transition: all 0.2s ease-in
-  background-color: rgba(0, 0, 0, 0.08)
+  background-color: rgba(0, 0, 0, 0.05)
 
   &:hover
-    background-color: rgba(0, 0, 0, 0.2)
+    background-color: rgba(33, 33, 33, 0.5)
 
 .badge
   position: relative
@@ -36,6 +43,8 @@
   box-shadow: none
 
   transform: scale(1.3)
+
+  overflow: hidden
 
   margin: 0
   padding: 1em 1em
