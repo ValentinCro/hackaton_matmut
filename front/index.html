@@ -25,9 +25,9 @@
             </nav>
 
             
-            <div class="container">
-                <div class="row" ng-show="page.isSet(0)">
-                    {{ page.getSentence() }}
+            <div class="container" ng-controller="accueilCtrl as accueil">
+                <div class="row sentences" ng-show="page.isSet(0)">
+                    {{ accueil.getSentence() }}
                 </div>
                 <div class="row">
                     <!-- Panel -->
