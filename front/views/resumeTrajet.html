@@ -1,6 +1,17 @@
 <div class="col-lg-12 col-sm-12">
-    <div class="well">
-        Malheureusement votre tendance sur ce trajet est négatif. Vous perdez 10 points.
-        Votre nouveau solde de points est donc de 1311 pts.
+    <div class="well" ng-show="trajet.getKeepTendance() < 0">
+        Malheureusement votre tendance sur ce trajet est négative. Vous perdez 10 points.
+        Votre nouveau solde de points est donc de {{ page.getGlobalPoint() - 10 }} pts.
+        <p><button ng-click="page.setPage(0)">Retour à l'accueil</button></p>
+    </div>
+    <div class="well" ng-show="trajet.getKeepTendance() > 0">
+        Bravo votre tendance sur ce trajet est positive. Vous gagner 10 points.
+        Votre nouveau solde de points est donc de {{ page.getGlobalPoint() + 10 }} pts.
+        <p><button ng-click="page.setPage(0)">Retour à l'accueil</button></p>
+    </div>
+    <div class="well" ng-show="trajet.getKeepTendance() == 0">
+        Votre tendance sur ce trajet est neutre.
+        Votre solde de points reste donc à {{ page.getGlobalPoint() }} pts.
+        <p><button ng-click="page.setPage(0)">Retour à l'accueil</button></p>
     </div>
 </div>

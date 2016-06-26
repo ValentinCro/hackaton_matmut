@@ -139,6 +139,7 @@
                 var trajet = this;
                 trajet.vitesseMax = 50;
                 trajet.tendance = 0;
+                trajet.keepTendance = 0;
                 trajet.goodDriveKm = 0;
                 trajet.badDriveKm = 0;
                 trajet.latitude = null;
@@ -198,6 +199,7 @@
                             .done(function( data ) {
                                 console.log( "Data Loaded: " + data );
                             });
+                        trajet.keepTendance = trajet.tendance;
                         trajet.tendance = 0;
                         trajet.goodDriveKm = 0;
                         trajet.badDriveKm = 0;
@@ -215,6 +217,10 @@
                         return trajet.tendance;
                     };
 
+
+                    trajet.getKeepTendance = function() {
+                        return trajet.keepTendance;
+                    };
                     trajet.isNeutral = function() {
                         return trajet.tendance == 0;
                     };
