@@ -3,10 +3,11 @@
     'use strict';
     var app = angular.module("matmutDrive", []);
 
-    app.controller('accueilCtrl', ['$http', function($http) {
-        var accueilCtrl = this
-        accueilCtrl.globalPoint;
-        accueilCtrl.sentence = [];
+
+    app.controller('pageController',['$http', function($http) {
+        var pageController = this
+        pageController.globalPoint;
+        pageController.sentence = [];
 
         $http({
             method: 'GET',
@@ -14,15 +15,14 @@
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available
-            accueilCtrl.globalPoint = response.data.points[0].user.point_global;
-            console.log(accueilCtrl.globalPoint)
+            pageController.globalPoint = response.data.points[0].user.point_global;
         }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
         });
 
-        accueilCtrl.getGlobalPoint = function() {
-            return accueilCtrl.globalPoint;
+        pageController.getGlobalPoint = function() {
+            return pageController.globalPoint;
         };
 
         $http({
@@ -31,31 +31,28 @@
         }).then(function successCallback(response) {
             // this callback will be called asynchronously
             // when the response is available
-            accueilCtrl.sentence = response.data.advices;
-            console.log(accueilCtrl.sentence);
+            pageController.sentence = response.data.advices;
         }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
         });
 
-        accueilCtrl.getSentence = function() {
-            var sentence = Math.floor((Math.random() * accueilCtrl.sentence.length));
-            return accueilCtrl.sentence[sentence].text;
+        pageController.getSentence = function() {
+            if (pageController.sentence.length > 0) {
+                var sentence = Math.floor((Math.random() * pageController.sentence.length));
+                return pageController.sentence[sentence].text;
+            }
+        };
+        pageController.page = 0;
+
+        pageController.isSet = function(checkPage) {
+            return pageController.page === checkPage;
         };
 
+        pageController.setPage = function(activePage) {
+            pageController.page = activePage;
+        };
     }]);
-
-    app.controller('pageController', function() {
-        this.page = 0;
-
-        this.isSet = function(checkPage) {
-            return this.page === checkPage;
-        };
-
-        this.setPage = function(activePage) {
-            this.page = activePage;
-        };
-    });
 
     app.directive('myTrajetPage', ['$http', function($http) {
         return {
