@@ -1,0 +1,73 @@
+.sentences
+  text-align: center
+  margin: 5em auto
+  margin-top: 2em
+
+.row
+  .accueil, trajet-page, classement-page
+    display: flex
+    justify-content: center
+    margin: 0
+  
+  classement-page
+    flex-direction: column
+
+.panel
+  padding: 2em 3.2em
+  margin: 0
+
+  background-color: rgba(0, 0, 0, 0.08)
+  border-radius: 3px
+  width: 25em
+
+  &-left
+    transform: translateX(7em)
+
+  &-right
+    text-align: right
+    transform: translateX(-7em)
+
+// Media queries
+@media (max-width: $w-1250)
+  .container
+    margin: 0
+    padding: 0 
+
+  .row
+
+    classement-page
+      display: flex
+      justify-content: center
+      margin: 0
+      flex-direction: column
+    
+    .accueil, trajet-page
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      margin: 0
+      margin-top: -15em
+      padding: 0
+      width: 100%
+
+  .panel
+    padding: 2em 3.2em
+    margin: 0
+
+    background-color: rgba(0, 0, 0, 0.08)
+    border-radius: 3px
+    width: 70%
+    height: 10em
+
+    &-left, &-right
+      transform: translateX(0)
+      text-align: center
+    
+    &-left
+      transform: translateY(11em)
+    
+    &-right
+      transform: translateY(-11em)
+      padding-top: 7em
+      height: 5em

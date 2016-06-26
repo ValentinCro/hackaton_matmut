@@ -1,0 +1,62 @@
+.menu
+  margin-bottom: 1.5em
+
+  ul
+    list-style: none
+    margin: 0
+    padding: 0
+    display: flex
+    justify-content: center
+
+    li
+      &:hover a
+        background: rgba(47, 163, 234, 0.6)
+
+      &.active a
+        background: rgba(47, 163, 234, 0.6)
+
+      a
+        background: rgba(47, 163, 234, 1)
+        color: white
+        padding: 1.5em 2em
+        transition: all 0.2s ease-in-out
+
+
+.classement
+  .table
+
+    width: 90%
+    margin: 0 auto
+
+    thead
+    tbody
+      tr
+        &:nth-child(even)
+          background: rgba(0, 0, 0, 0.05)
+
+        td
+
+
+@media (max-width: 475px)
+  .menu
+    margin-bottom: 1em
+
+    ul
+      list-style: none
+      margin: 0
+      padding: 0
+      display: flex
+      justify-content: center
+
+      li
+        &:hover a
+          background: rgba(47, 163, 234, 0.6)
+
+        &.active a
+          background: rgba(47, 163, 234, 0.6)
+
+        a
+          background: rgba(47, 163, 234, 1)
+          color: white
+          padding: 1em 1.5em
+          transition: all 0.2s ease-in-out
