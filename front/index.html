@@ -25,9 +25,10 @@
             </nav>
 
             
-            <div class="container" ng-controller="accueilCtrl as accueil">
+            <div class="container">
                 <div class="row sentences" ng-show="page.isSet(0)">
-                    {{ accueil.getSentence() }}
+                    <i class="fa fa-lightbulb-o text-blue" aria-hidden="true"></i>
+                    {{ page.getSentence() }}
                 </div>
                 <div class="row">
                     <!-- Panel -->
