@@ -14,77 +14,83 @@
 <!-- Mes amis -->
 <div class="row" ng-show="classement.isSet(0)">
     <div class="col-lg-12 col-md-12">
-        <table class="table">
-            <thead>
-                <th>Position</th>
-                <th>Score</th>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Récompense</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>2456</td>
-                    <td>Snow</td>
-                    <td>John</td>
-                    <td><i class="fa fa-thumbs-up text-green" aria-hidden="true"></i></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>2123</td>
-                    <td>Bolton</td>
-                    <td>Ramsay</td>
-                    <td><i class="fa fa-thumbs-up text-green" aria-hidden="true"></i></td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>100</td>
-                    <td>Greyjoy</td>
-                    <td>Theon</td>
-                    <td><span class="glyphicon glyphicon-minus text-green" aria-hidden="true"></span></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <th>Position</th>
+                    <th>Score</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Récompense</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2456</td>
+                        <td>Snow</td>
+                        <td>John</td>
+                        <td><i class="fa fa-thumbs-up text-green" aria-hidden="true"></i></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2123</td>
+                        <td>Bolton</td>
+                        <td>Ramsay</td>
+                        <td><i class="fa fa-thumbs-up text-green" aria-hidden="true"></i></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>100</td>
+                        <td>Greyjoy</td>
+                        <td>Theon</td>
+                        <td><span class="glyphicon glyphicon-minus text-green" aria-hidden="true"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
 <!-- Ma Ville -->
 <div class="row" ng-show="classement.isSet(1)">
     <div class="col-lg-12 col-md-12">
-        <table class="table">
-            <thead>
-                <th>Position</th>
-                <th>Score</th>
-                <th>Nom</th>
-                <th>Prénom</th>
-            </thead>
-            <tbody>
-                <td>1</td>
-                <td>2456</td>
-                <td>Jean Neige</td>
-                <td>1</td>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <th>Position</th>
+                    <th>Score</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                </thead>
+                <tbody>
+                    <td>1</td>
+                    <td>2456</td>
+                    <td>Jean Neige</td>
+                    <td>1</td>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
 <!-- Classement Global -->
 <div class="row" ng-show="classement.isSet(2)">
     <div class="col-lg-12 col-md-12">
-        <table class="table">
-            <thead>
-                <th>Position</th>
-                <th>Score</th>
-                <th>Nom</th>
-            </thead>
-            <tbody>
-                <tr ng-repeat="obj in classement.getData().users">
-                    <td>{{ obj.id }}</td>
-                    <td class="text-center">{{ obj.point_global }}</td>
-                    <td class="text-center">{{ obj.token }}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <th>Position</th>
+                    <th>Score</th>
+                    <th>Nom</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="obj in classement.getData().users">
+                        <td>{{ obj.id }}</td>
+                        <td class="text-center">{{ obj.point_global }}</td>
+                        <td class="text-center">{{ obj.token }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
