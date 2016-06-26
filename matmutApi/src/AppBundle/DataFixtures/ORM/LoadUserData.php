@@ -19,6 +19,13 @@ class LoadUserData implements FixtureInterface
     public function load(ObjectManager $manager)
     {
 
+        $trajet = new Trajet();
+        $trajet->setKmNotGood(0);
+        $trajet->setKmGood(0);
+
+        $point = new Point();
+        $point->setValue(0);
+
         $toto = new User();
         $toto->setToken('toto');
         $toto->setPointGlobal(0);
@@ -42,6 +49,9 @@ class LoadUserData implements FixtureInterface
         $advice5 = new Advice();
         $advice5->setText("Les excès de vitesse coûtent cher... En vies, en contraventions et en points sur le permis. Il est estimé que la vitesse est en cause dans 25% des accidents mortels.");
 
+        $trajet->setUser($toto);
+        $point->setUser($toto);
+
         $manager->persist($advice);
         $manager->persist($advice2);
         $manager->persist($advice3);
@@ -49,6 +59,8 @@ class LoadUserData implements FixtureInterface
         $manager->persist($advice5);
         $manager->persist($toto);
         $manager->persist($titi);
+        $manager->persist($trajet);
+        $manager->persist($point);
 
         $manager->flush();
     }
