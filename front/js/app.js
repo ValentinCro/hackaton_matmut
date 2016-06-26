@@ -2,6 +2,49 @@
 (function() {
     'use strict';
     var app = angular.module("matmutDrive", []);
+
+    app.controller('accueilCtrl', ['$http', function($http) {
+        var accueilCtrl = this
+        accueilCtrl.globalPoint;
+        accueilCtrl.sentence = [];
+
+        $http({
+            method: 'GET',
+            url: 'http://146.185.183.44/app_dev.php/users/toto/points'
+        }).then(function successCallback(response) {
+            // this callback will be called asynchronously
+            // when the response is available
+            accueilCtrl.globalPoint = response.data.points[0].user.point_global;
+            console.log(accueilCtrl.globalPoint)
+        }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
+
+        accueilCtrl.getGlobalPoint = function() {
+            return accueilCtrl.globalPoint;
+        };
+
+        $http({
+            method: 'GET',
+            url: 'http://146.185.183.44/app_dev.php/advice'
+        }).then(function successCallback(response) {
+            // this callback will be called asynchronously
+            // when the response is available
+            accueilCtrl.sentence = response.data.advices;
+            console.log(accueilCtrl.sentence);
+        }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
+
+        accueilCtrl.getSentence = function() {
+            var sentence = Math.floor((Math.random() * accueilCtrl.sentence.length));
+            return accueilCtrl.sentence[sentence].text;
+        };
+
+    }]);
+
     app.controller('pageController', function() {
         this.page = 0;
 

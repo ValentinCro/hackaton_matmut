@@ -4,7 +4,7 @@
         <meta charset="UTF-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Matmut Drive</title>
+        <title>Good Driving Challenge</title>
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/angular.min.js"></script>
@@ -14,22 +14,22 @@
 
 
     <body ng-app="matmutDrive">
-
-
         <span ng-controller="pageController as page">
             <nav class="navbar navbar-default header">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
-                        <a class="navbar-brand" ng-click="page.setPage(0)" href="#">MatmutDrive</a>
+                        <a class="navbar-brand" ng-click="page.setPage(0)" href="#">Good Driving Challenge</a>
                     </div>
                 </div><!-- /.container-fluid -->
             </nav>
 
             
-            <div class="container">
+            <div class="container" ng-controller="accueilCtrl as accueil">
                 <div class="row">
-
+                    {{ accueil.getSentence() }}
+                </div>
+                <div class="row">
                     <!-- Panel -->
                     <span class="accueil" ng-show="page.isSet(0)">
                         <!-- Info relatif au trajet (ma tendance etc) -->
@@ -42,10 +42,7 @@
                         <!-- Aperçu des points actuels & tendance -->
                         <div class="panel badge clickable" ng-click="page.setPage(1)">
                             <span class="points">
-                                1321 pts
-                            </span>
-                            <span class="tendance">
-                                <i class="glyphicon glyphicon-arrow-right up"></i>+2
+                                {{ accueil.getGlobalPoint() }} Pts
                             </span>
                         </div>
 

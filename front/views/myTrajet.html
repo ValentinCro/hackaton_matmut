@@ -2,13 +2,19 @@
     <div class="col-lg-12 col-md-12">
         <table class="table">
             <thead>
-                <th class="text-center">Bon point</th>
-                <th class="text-center">Mauvais Point</th>
+                <th>Bon point</th>
+                <th>Mauvais Point</th>
+                <th>Moyenne</th>
             </thead>
             <tbody>
             <tr ng-repeat="obj in myTrajet.getData().trajets">
-                <td class="text-center">{{ obj.km_good }}</td>
-                <td class="text-center">{{ obj.km_not_good }}</td>
+                <td>{{ obj.km_good }}</td>
+                <td>{{ obj.km_not_good }}</td>
+                <td>
+                    <i ng-show="obj.km_good > obj.km_not_good" class="fa fa-thumbs-up text-green" aria-hidden="true"></i>
+                    <i ng-show="obj.km_good === obj.km_not_good" class="glyphicon glyphicon-minus text-blue" aria-hidden="true"></i>
+                    <i ng-show="obj.km_good < obj.km_not_good" class="fa fa-thumbs-down text-red" aria-hidden="true"></i>
+                </td>
             </tr>
             </tbody>
         </table>
