@@ -194,7 +194,7 @@
                         trajet.started = false;
                         $.post( "http://146.185.183.44/app.php/users/toto/trajets", {
                             //trajet: "{\"km_good\":" + trajet.goodDriveKm +
-                            trajet: "{\"km_good\":300,\"km_not_good\":" + trajet.badDriveKm + "}" })
+                            trajet: "{\"km_good\":" + trajet.goodDriveKm + ",\"km_not_good\":" + trajet.badDriveKm + "}" })
                             .done(function( data ) {
                                 console.log( "Data Loaded: " + data );
                             });
